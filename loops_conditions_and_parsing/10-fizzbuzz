@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# This script displays numbers from 1 to 100 with FizzBuzz logic
+
+i=1
+while [ $i -le 100 ]; do
+    if [ $((i % 3)) -eq 0 ] && [ $((i % 5)) -eq 0 ]; then
+        echo -n "FizzBuzz"
+    elif [ $((i % 3)) -eq 0 ]; then
+        echo -n "Fizz"
+    elif [ $((i % 5)) -eq 0 ]; then
+        echo -n "Buzz"
+    else
+        echo -n "$i"
+    fi
+
+    # Add a space between items or a newline depending on formatting, but standard echo works too:
+    if [ $i -lt 100 ]; then
+        echo -n " "
+    fi
+    ((i++))
+done
+echo ""
