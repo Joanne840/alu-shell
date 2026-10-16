@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
+# Creates a PID file, handles SIGTERM, SIGINT, and SIGQUIT signals, and loops indefinitely
+
 echo $$ > /var/run/myscript.pid
 
-trap "echo 'I hate the kill command'; rm -f /var/run/myscript.pid; exit 0" SIGTERM
-trap "echo 'Y u no love me?!'" SIGINT
-trap "rm -f /var/run/myscript.pid; exit 0" SIGQUIT
+ft_term() {
+    echo "I hate the kill command"
+    rm -f /var/run/myscript.pid
+    exit 0
+}
+
+ft_int() {
+    echo "Y u no love me?!"
+}
+
+ft_quit() {
+    rm -f /var/run/myscript.pid
+    exit 0
+}
+
+trap ft_term SIGTERM
+trap ft_int SIGINT
+trap ft_quit SIGQUIT
 
 while true; do
     echo "To infinity and beyond"

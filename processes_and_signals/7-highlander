@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
-trap "echo 'I am invincible!!!'" SIGTERM
+# Loops indefinitely displaying a message and traps SIGTERM to display a message
+
+sigterm_handler() {
+    echo "I am invincible!!!"
+}
+
+trap sigterm_handler SIGTERM
+
 while true; do
     echo "To infinity and beyond"
     sleep 2

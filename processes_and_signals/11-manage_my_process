@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Manages the background process with start, stop, and restart commands
 PIDFILE="/var/run/my_process.pid"
 DAEMON="./manage_my_process"
 
@@ -18,7 +19,7 @@ case "$1" in
             exit 1
         fi
         PID=$(cat "$PIDFILE")
-        kill "$PIDFILE" 2>/dev/null || kill "$PID" 2>/dev/null
+        kill "$PID" 2>/dev/null
         rm -f "$PIDFILE"
         echo "manage_my_process stopped"
         ;;
@@ -36,4 +37,4 @@ case "$1" in
         echo "Usage: manage_my_process {start|stop|restart}"
         exit 1
         ;;
-es
+esac
